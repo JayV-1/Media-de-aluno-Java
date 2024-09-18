@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class Main{
+    
+    public static void main(String[] args){
+        int numStudents;
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.print("Quantos alunos quer analisar? ");
+        numStudents = entrada.nextInt();
+        
+        processStudents(numStudents);
+        
+        entrada.close();
+    }
+
+    public static void processStudents(int numStudent){
+        int processedStudents = 0;
+        String studentName;
+        double avg, A1, A2;
+        boolean stay = false;
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        while (processedStudents < numStudent) {
+            
+            
+            System.out.println("---------------------------------");
+            System.out.print("Qual o nome do aluno? ");
+            studentName = entrada.next();
+            
+            System.out.print("Nota da A1: ");
+            A1 = entrada.nextDouble();
+            
+            System.out.print("Nota da A2: ");
+            A2 = entrada.nextDouble();
+
+            System.out.println("---------------------------------");
+            
+            /*try {
+                op = entrada.nextInt();
+            } catch (Exception error) {
+                System.out.println("Opcao invalida:\n\t" + error);
+            }*/
+            
+            avg = getStudentGrade(A1, A2);
+            
+            printStudentStatus(studentName, avg);
+            
+            processedStudents++;
+        }
+    }
+
+    public static void printStudentStatus(String name, double avg){
+        String status, grau;
+        
+        if (avg < 6){
+            status = "reprovado";
+            grau = "Insuficiente";
+        } else {
+            status = "aprovado";
+            
+            if (avg < 8)
+                grau = "Regular";
+            else if (avg < 9)
+                grau = "Bom";
+            else
+                grau = "Excelente";
+        }
+        
+        System.out.printf("%s, aluno %s, foi %s com media %.2f", name, grau, status, avg);
+    }
+
+    public static double getStudentGrade(double num1, double num2){
+       return (num1 + num2)/2; 
+    }
+}
+
+public class student{
+    double A1, A2, average;
+}
