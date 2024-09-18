@@ -1,0 +1,121 @@
+import java.util.Scanner;
+
+public class first{
+    
+    public static void main(String[] args){
+        int op = menu();
+        
+        processUserInput(op);
+    }
+    
+    public static int menu(){
+        int option;
+        boolean stay = false;
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        do {
+            int op;
+            
+            System.out.println("---------------------------------");
+            System.out.println("Escolha a operação desejada:");
+            System.out.println("1. Soma");
+            System.out.println("2. Subtração");
+            System.out.println("3. Multiplicação");
+            System.out.println("4. Divisão");
+            System.out.println("5. Sair");
+            System.out.println("---------------------------------");
+            
+            try {
+                op = entrada.nextInt();
+                
+                if (op <= 5 && op >= 1){
+                    option = op;
+                    stay = false;
+                } else {
+                    stay = true;
+                    System.out.println("Opcao invalida!");
+                }
+            } catch (Exception error) {
+                System.out.println("Opcao invalida:\n\t" + error);
+                
+            }
+        } while (stay);
+        
+        
+        entrada.close();
+        
+        return option;
+    }
+    
+    public static boolean validateUserInput(int n){
+        return true;
+    }
+    
+    public static void processUserInput(int opcao){
+        int op;
+        double n1,n2,resultado;
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.print  ("Digite o número da operação: ");
+        opcao = entrada.nextInt();
+        System.out.println("---------------------------------");
+        
+        System.out.print("Digite o primeiro número: ");
+        n1 = entrada.nextDouble();
+        
+        System.out.print("Digite o segundo número: ");
+        n2 = entrada.nextDouble();
+        
+        switch (opcao) {
+            case 1:
+                resultado=somar(n1,n2);
+                System.out.println("Resultado da Soma: " +resultado);
+                break;
+                
+            case 2:
+                resultado=subtrair(n1,n2);
+                System.out.println("Resultado da Subtração: " +resultado);
+                break;
+                
+            case 3:
+                resultado=multiplicar(n1,n2);
+                System.out.println("Resultado da Multiplicação: " +resultado);
+                break;
+                
+            case 4:
+                if(n2==0){
+                    System.out.println("Não é possível dividir por zero.");
+                    break;
+                }else{
+                    resultado=dividir(n1,n2);
+                    System.out.println("Resultado da Divisão: " +resultado);
+                    break;
+                }
+            default:
+                System.out.println("Opção Inválida! Digite um número entre 1 e 4");
+                
+        }
+        entrada.close();
+    }
+
+    public static double somar(double num1, double num2){
+       return num1 + num2; 
+    }
+    
+    public static double subtrair(double num1, double num2){
+       return num1 - num2; 
+    }
+    
+    public static double multiplicar(double num1, double num2){
+       return num1 * num2; 
+    }
+    
+    public static double dividir(double num1, double num2){
+       return num1 / num2; 
+    }
+    
+    
+    
+}
